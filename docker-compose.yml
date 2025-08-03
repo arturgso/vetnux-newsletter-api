@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # API Instance 1
+  api-1:
+    build: .
+    container_name: vetnux-newsletter-api-1
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    networks:
+      - shared-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # API Instance 2
+  api-2:
+    build: .
+    container_name: vetnux-newsletter-api-2
+    ports:
+      - "8002:8000"
+    env_file:
+      - .env
+    networks:
+      - shared-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  shared-network:
+    external: true

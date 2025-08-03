@@ -5,6 +5,8 @@ class Settings:
     # Configurações de CORS
     CORS_ORIGINS: List[str] = [
         "http://localhost:3000",    # React dev server
+        "http://localhost:3001",    # React dev server
+        "http://localhost:3002",    # React dev server
         "http://localhost:8080",    # Vue dev server  
         "http://localhost:5173",    # Vite dev server
         "http://127.0.0.1:3000",
